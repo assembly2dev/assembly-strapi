@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "auth_logs",
+  "info": {
+    "singularName": "auth-log",
+    "pluralName": "auth-logs",
+    "displayName": "Auth Log",
+    "description": "Authentication event logs for security and audit purposes"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userId": {
+      "type": "biginteger",
+      "required": true,
+      "description": "ID of the user associated with this log entry"
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "login_attempt",
+        "login_success",
+        "logout",
+        "verification_sent",
+        "verification_resent",
+        "account_locked",
+        "password_reset",
+        "profile_update"
+      ],
+      "required": true,
+      "description": "Type of authentication action"
+    },
+    "email": {
+      "type": "email",
+      "description": "Email address used in the authentication attempt"
+    },
+    "ipAddress": {
+      "type": "string",
+      "maxLength": 45,
+      "description": "IP address of the client (IPv6 compatible)"
+    },
+    "userAgent": {
+      "type": "text",
+      "description": "User agent string from the client"
+    },
+    "success": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "description": "Whether the authentication action was successful"
+    },
+    "errorMessage": {
+      "type": "text",
+      "description": "Error message if the action failed"
+    },
+    "metadata": {
+      "type": "json",
+      "description": "Additional metadata about the authentication event"
+    }
+  }
+}
+
+

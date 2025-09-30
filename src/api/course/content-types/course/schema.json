@@ -1,0 +1,182 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": "Course content type for managing educational content"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Course title"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "description": "URL-friendly identifier"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "description": "Course description"
+    },
+    "shortDescription": {
+      "type": "text",
+      "description": "Brief summary of the course"
+    },
+    "sku": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "Stock Keeping Unit identifier"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "description": "Regular price"
+    },
+    "salePrice": {
+      "type": "decimal",
+      "description": "Sale/discounted price"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["Published", "Draft", "Archived"],
+      "required": true,
+      "default": "Draft",
+      "description": "Publication status"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["Course", "Book", "Event", "Webinar", "Masterclass", "Workshop"],
+      "required": true,
+      "description": "Type of content"
+    },
+    "category": {
+      "type": "string",
+      "required": true,
+      "description": "Primary category"
+    },
+    "categories": {
+      "type": "json",
+      "description": "Array of category strings"
+    },
+    "level": {
+      "type": "string",
+      "description": "Difficulty level (e.g., All Levels, Beginner, Intermediate, Advanced)"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Course duration (e.g., 3 hours 55 minutes)"
+    },
+    "totalHours": {
+      "type": "decimal",
+      "description": "Total hours as decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Course thumbnail image"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured course flag"
+    },
+    "virtual": {
+      "type": "boolean",
+      "default": true,
+      "description": "Virtual/digital product flag"
+    },
+    "downloadable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Downloadable content flag"
+    },
+    "stock": {
+      "type": "enumeration",
+      "enum": ["In stock", "Limited stock", "Out of stock"],
+      "required": true,
+      "default": "In stock",
+      "description": "Stock status"
+    },
+    "stockQuantity": {
+      "type": "integer",
+      "description": "Stock quantity (for physical products)"
+    },
+    "students": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of enrolled students"
+    },
+    "rating": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 5,
+      "description": "Average rating"
+    },
+    "reviewCount": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of reviews"
+    },
+    "tags": {
+      "type": "json",
+      "description": "Array of tag strings"
+    },
+    "instructors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::instructor.instructor",
+      "description": "Course instructors"
+    },
+    "curriculum": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.course-module",
+      "description": "Course curriculum modules"
+    },
+    "highlights": {
+      "type": "json",
+      "description": "Array of highlight strings"
+    },
+    "requirements": {
+      "type": "json",
+      "description": "Array of requirement strings"
+    },
+    "targetAudience": {
+      "type": "json",
+      "description": "Array of target audience strings"
+    },
+    "whatYouWillLearn": {
+      "type": "json",
+      "description": "Array of learning outcomes"
+    },
+    "previewUrl": {
+      "type": "string",
+      "description": "Preview video URL"
+    },
+    "datePublished": {
+      "type": "datetime",
+      "description": "Publication date"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "course",
+      "description": "Course reviews"
+    }
+  }
+} 

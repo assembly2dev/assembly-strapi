@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User (Extended)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "emailConfirmedAt": { "type": "datetime" },
+    "twoFactorEnabled": { "type": "boolean", "default": false },
+    "twoFactorMethod": { "type": "enumeration", "enum": ["totp", "email"] },
+    "twoFactorSecret": { "type": "string" },
+    "lastLoginAt": { "type": "datetime" },
+    "failedLoginCount": { "type": "integer", "default": 0 }
+  }
+}
+
+

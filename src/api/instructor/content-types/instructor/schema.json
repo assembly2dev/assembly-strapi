@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "instructors",
+  "info": {
+    "singularName": "instructor",
+    "pluralName": "instructors",
+    "displayName": "Instructor",
+    "description": "Instructor content type for managing course instructors"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Instructor name"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true,
+      "description": "URL-friendly identifier"
+    },
+    "role": {
+      "type": "string",
+      "required": true,
+      "description": "Job title/role"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Profile image"
+    },
+    "bio": {
+      "type": "text",
+      "required": true,
+      "description": "Short biography"
+    },
+    "longBio": {
+      "type": "richtext",
+      "description": "Detailed biography"
+    },
+    "specialty": {
+      "type": "string",
+      "description": "Area of expertise"
+    },
+    "experience": {
+      "type": "string",
+      "description": "Years of experience"
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course",
+      "mappedBy": "instructors",
+      "description": "Courses taught by this instructor"
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "shared.social-links",
+      "description": "Social media and contact links"
+    },
+    "stats": {
+      "type": "component",
+      "component": "shared.instructor-stats",
+      "description": "Instructor statistics"
+    },
+    "showOnFacilitatorsPage": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to show on facilitators page"
+    }
+  }
+}

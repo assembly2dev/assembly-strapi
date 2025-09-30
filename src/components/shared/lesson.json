@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_shared_lessons",
+  "info": {
+    "displayName": "Lesson",
+    "description": "Individual lesson within a course module"
+  },
+  "options": {},
+  "attributes": {
+    "lessonId": {
+      "type": "integer",
+      "required": true,
+      "description": "Unique identifier for the lesson within the module"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Lesson title"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["video", "text", "quiz", "assignment"],
+      "required": true,
+      "description": "Type of lesson content"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Lesson duration in format HH:MM or MM:SS"
+    },
+    "content": {
+      "type": "richtext",
+      "description": "Lesson content for text-based lessons"
+    },
+    "videoUrl": {
+      "type": "string",
+      "description": "URL for video content"
+    },
+    "order": {
+      "type": "integer",
+      "description": "Display order within the module"
+    }
+  }
+}

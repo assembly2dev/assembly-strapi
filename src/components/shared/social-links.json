@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "Social Links",
+    "description": "Social media and contact links for instructors"
+  },
+  "options": {},
+  "attributes": {
+    "linkedin": {
+      "type": "string",
+      "description": "LinkedIn profile URL"
+    },
+    "twitter": {
+      "type": "string",
+      "description": "Twitter profile URL"
+    },
+    "instagram": {
+      "type": "string",
+      "description": "Instagram profile URL"
+    },
+    "whatsapp": {
+      "type": "string",
+      "description": "WhatsApp contact"
+    },
+    "email": {
+      "type": "email",
+      "description": "Contact email address"
+    }
+  }
+}

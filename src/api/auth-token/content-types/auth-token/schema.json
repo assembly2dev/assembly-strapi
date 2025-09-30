@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "auth_tokens",
+  "info": {
+    "singularName": "auth-token",
+    "pluralName": "auth-tokens",
+    "displayName": "Auth Token",
+    "description": "Short-lived, single-use tokens for email verification, password reset, and 2FA challenges"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "userId": { "type": "biginteger", "required": true },
+    "type": { "type": "enumeration", "enum": ["email_verification", "password_reset", "twofa_challenge"], "required": true },
+    "token": { "type": "string", "required": true, "unique": true },
+    "expiresAt": { "type": "datetime", "required": true },
+    "usedAt": { "type": "datetime" },
+    "metadata": { "type": "json" }
+  }
+}
+
+

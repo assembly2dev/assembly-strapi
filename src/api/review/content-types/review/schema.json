@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "Review",
+    "description": "Course review content type for managing user reviews"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "reviews",
+      "required": true,
+      "description": "Course being reviewed"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "required": true,
+      "description": "User who wrote the review"
+    },
+    "rating": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 5,
+      "description": "Rating from 1 to 5"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Review title"
+    },
+    "comment": {
+      "type": "richtext",
+      "required": true,
+      "description": "Review content"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Verified purchase flag"
+    }
+  }
+}

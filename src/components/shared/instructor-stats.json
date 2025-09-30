@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_instructor_stats",
+  "info": {
+    "displayName": "Instructor Stats",
+    "description": "Statistics and metrics for instructors"
+  },
+  "options": {},
+  "attributes": {
+    "coursesCreated": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of courses created by this instructor"
+    }
+  }
+}

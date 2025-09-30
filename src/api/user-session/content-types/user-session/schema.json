@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_sessions",
+  "info": {
+    "singularName": "user-session",
+    "pluralName": "user-sessions",
+    "displayName": "User Session",
+    "description": "User session management for authentication"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userId": {
+      "type": "biginteger",
+      "required": true,
+      "description": "ID of the user associated with this session"
+    },
+    "sessionToken": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 255,
+      "description": "Unique session token for this session"
+    },
+    "refreshToken": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 255,
+      "description": "Refresh token for extending session"
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true,
+      "description": "When this session expires"
+    },
+    "ipAddress": {
+      "type": "string",
+      "maxLength": 45,
+      "description": "IP address where session was created (IPv6 compatible)"
+    },
+    "userAgent": {
+      "type": "text",
+      "description": "User agent string from the client"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true,
+      "description": "Whether this session is currently active"
+    },
+    "lastActivity": {
+      "type": "datetime",
+      "description": "Last activity timestamp for this session"
+    }
+  }
+}
+
+

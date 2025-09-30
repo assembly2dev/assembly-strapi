@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_course_modules",
+  "info": {
+    "displayName": "Course Module",
+    "description": "Course module containing multiple lessons"
+  },
+  "options": {},
+  "attributes": {
+    "moduleId": {
+      "type": "integer",
+      "required": true,
+      "description": "Unique identifier for the module within the course"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Module title"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Total module duration"
+    },
+    "lessons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.lesson",
+      "description": "Lessons within this module"
+    }
+  }
+}
