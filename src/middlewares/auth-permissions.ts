@@ -14,14 +14,41 @@ export default (config, { strapi }) => {
       'GET /api/instructors',
       'GET /api/instructors/:id',
       'GET /api/reviews',
-      'GET /api/reviews/:id'
+      'GET /api/reviews/:id',
+      // System endpoints
+      'GET /_health',
+      'GET /_health/',
+      'GET /admin',
+      'GET /admin/',
+      'GET /admin/*',
+      'GET /documentation',
+      'GET /documentation/',
+      'GET /documentation/*',
+      // Auth endpoints (handled by Strapi's built-in auth)
+      'POST /api/auth/*',
+      'GET /api/auth/*',
+      // Upload endpoints
+      'GET /uploads/*',
+      'POST /upload',
+      'POST /upload/*'
     ];
     
     const method = ctx.method;
     const path = ctx.path;
     const endpoint = `${method} ${path.replace(/\/\d+$/, '/:id')}`;
     
-    if (publicEndpoints.includes(endpoint)) {
+    // Check if endpoint is public
+    const isPublicEndpoint = publicEndpoints.some(publicEndpoint => {
+      if (publicEndpoint.includes('*')) {
+        // Handle wildcard patterns
+        const pattern = publicEndpoint.replace('*', '.*');
+        const regex = new RegExp(`^${pattern.replace(/\//g, '\\/')}$`);
+        return regex.test(endpoint);
+      }
+      return publicEndpoint === endpoint;
+    });
+    
+    if (isPublicEndpoint) {
       return await next();
     }
     
