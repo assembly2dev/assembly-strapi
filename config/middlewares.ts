@@ -1,4 +1,4 @@
-export default [
+export default ({ env }) => [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
@@ -13,8 +13,8 @@ export default [
     name: 'global::rate-limit',
     config: {
       match: ['/api/auth'],
-      windowSec: process.env.LOGIN_RATE_LIMIT_WINDOW_SEC ? Number(process.env.LOGIN_RATE_LIMIT_WINDOW_SEC) : 60,
-      max: process.env.LOGIN_RATE_LIMIT_MAX ? Number(process.env.LOGIN_RATE_LIMIT_MAX) : 10,
+      windowSec: env.int('LOGIN_RATE_LIMIT_WINDOW_SEC', 60),
+      max: env.int('LOGIN_RATE_LIMIT_MAX', 10),
     },
   },
   {
@@ -27,6 +27,10 @@ export default [
   },
   {
     name: 'global::auth-permissions',
+    config: {},
+  },
+  {
+    name: 'global::content-manager-fix',
     config: {},
   },
 ];

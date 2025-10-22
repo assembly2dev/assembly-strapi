@@ -1,14 +1,27 @@
 /**
- * Strapi bootstrap function
- * This function runs when Strapi starts and can be used to insert initial data
+ * Dummy instructor data import script for PLB Assembly 2.0 Course Management System
+ * This script adds diverse instructor profiles with realistic data
  */
 
-export default async ({ strapi }: { strapi: any }) => {
-  console.log('🚀 Strapi bootstrap starting...');
-  
-  // Force insert instructors (remove existing check for testing)
-  console.log('📊 Force inserting instructor data...');
-  
+import { Strapi } from '@strapi/strapi';
+
+export default async function importInstructorDummyData(strapi: Strapi) {
+  console.log('Starting instructor dummy data import...');
+
+  try {
+    // Create diverse instructor profiles
+    const instructors = await createDummyInstructors(strapi);
+    console.log(`Created ${instructors.length} dummy instructors`);
+
+    console.log('Instructor dummy data import completed successfully!');
+    return instructors;
+  } catch (error) {
+    console.error('Error importing instructor dummy data:', error);
+    throw error;
+  }
+}
+
+async function createDummyInstructors(strapi: Strapi) {
   const instructorsData = [
     {
       name: 'Dr. Michael Chen',
@@ -190,29 +203,22 @@ export default async ({ strapi }: { strapi: any }) => {
       showOnFacilitatorsPage: true
     }
   ];
-  
-  try {
-    const createdInstructors = [];
-    
-    for (const instructorData of instructorsData) {
-      console.log(`Creating instructor: ${instructorData.name}...`);
-      
-      try {
-        const instructor = await strapi.entityService.create('api::instructor.instructor', {
-          data: instructorData
-        });
-        
-        createdInstructors.push(instructor);
-        console.log(`✅ Created: ${instructor.name} (ID: ${instructor.id})`);
-      } catch (createError) {
-        console.error(`❌ Error creating ${instructorData.name}:`, createError.message);
-      }
-    }
-    
-    console.log(`🎉 Successfully created ${createdInstructors.length} instructors!`);
-    console.log('Instructors are now available via API at /api/instructors');
-    
+
+  const instructors = [];
+  for (const instructorData of instructorsData) {
+    try {
+      const instructor = await strapi.entityService.create('api::instructor.instructor', {
+        data: instructorData
+      });
+      instructors.push(instructor);
+      console.log(`Created instructor: ${instructorData.name}`);
     } catch (error) {
-    console.error('❌ Error creating instructors:', error.message);
+      console.error(`Error creating instructor ${instructorData.name}:`, error.message);
     }
-};
+  }
+
+  return instructors;
+}
+
+// Export for use in other scripts
+export { createDummyInstructors };

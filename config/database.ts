@@ -29,6 +29,8 @@ export default ({ env }) => {
           idleTimeoutMillis: env.int('DATABASE_IDLE_TIMEOUT', 30000),
           reapIntervalMillis: env.int('DATABASE_REAP_INTERVAL', 1000),
           createRetryIntervalMillis: env.int('DATABASE_CREATE_RETRY_INTERVAL', 200),
+          // Additional pool configuration for better connection management
+          propagateCreateError: false,
         },
         acquireConnectionTimeout: env.int('DATABASE_ACQUIRE_CONNECTION_TIMEOUT', 60000),
         debug: env.bool('DATABASE_DEBUG', false),

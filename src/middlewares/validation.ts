@@ -4,14 +4,20 @@
 
 export default (config, { strapi }) => {
   return async (ctx, next) => {
+    // Skip validation entirely for Strapi admin routes
+    // Admin endpoints manage their own request shapes and must not be wrapped in { data: ... }
+    if (ctx.path.startsWith('/admin')) {
+      return await next();
+    }
+
     // Skip validation for GET and DELETE requests
     if (ctx.method === 'GET' || ctx.method === 'DELETE') {
       return await next();
     }
     
     try {
-      // Validate request body structure
-      if (ctx.request.body && !ctx.request.body.data) {
+      // Only enforce { data: ... } wrapper for API routes
+      if (ctx.path.startsWith('/api') && ctx.request.body && !ctx.request.body.data) {
         return ctx.badRequest('Request body must contain a "data" field');
       }
       

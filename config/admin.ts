@@ -25,4 +25,8 @@ export default ({ env }) => ({
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
+  // Disable problematic content-manager homepage features
+  features: {
+    'content-manager.homepage': false,
+  },
 });

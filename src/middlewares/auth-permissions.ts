@@ -4,7 +4,12 @@
 
 export default (config, { strapi }) => {
   return async (ctx, next) => {
-    // Skip authentication for public endpoints
+    // CRITICAL: Skip ALL admin routes - let Strapi handle admin authentication natively
+    if (ctx.path.startsWith('/admin')) {
+      return await next();
+    }
+    
+    // Skip authentication for public API endpoints
     const publicEndpoints = [
       'GET /api/courses',
       'GET /api/courses/:id',
@@ -18,9 +23,6 @@ export default (config, { strapi }) => {
       // System endpoints
       'GET /_health',
       'GET /_health/',
-      'GET /admin',
-      'GET /admin/',
-      'GET /admin/*',
       'GET /documentation',
       'GET /documentation/',
       'GET /documentation/*',

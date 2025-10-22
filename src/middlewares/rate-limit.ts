@@ -1,5 +1,11 @@
 export default (config, { strapi }) => {
   return async (ctx, next) => {
+    // Only apply rate limiting to API auth routes, never to admin endpoints
+    const path = ctx.path;
+    if (!path.startsWith('/api/auth')) {
+      return await next();
+    }
+
     const { email } = ctx.request.body;
     
     if (email) {
