@@ -94,3 +94,4 @@ async function createSimpleAdmin() {
 
 // Run the script
 createSimpleAdmin().catch(console.error);
+

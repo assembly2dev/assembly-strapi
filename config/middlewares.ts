@@ -10,6 +10,10 @@ export default ({ env }) => [
   'strapi::favicon',
   'strapi::public',
   {
+    name: 'global::content-manager-fix',
+    config: {},
+  },
+  {
     name: 'global::rate-limit',
     config: {
       match: ['/api/auth'],
@@ -27,10 +31,6 @@ export default ({ env }) => [
   },
   {
     name: 'global::auth-permissions',
-    config: {},
-  },
-  {
-    name: 'global::content-manager-fix',
     config: {},
   },
 ];

@@ -32,3 +32,4 @@ export default (config, { strapi }) => {
     await next();
   };
 };
+
